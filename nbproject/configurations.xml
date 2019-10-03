@@ -4,6 +4,9 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Cliente.h</itemPath>
+      <itemPath>fecha.h</itemPath>
+      <itemPath>vectordinamico.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -12,6 +15,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>fecha.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -36,7 +40,15 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="Cliente.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="fecha.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="fecha.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="vectordinamico.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -59,7 +71,15 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Cliente.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="fecha.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="fecha.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="vectordinamico.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
