@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Lista_Enlazada
+PROJECTNAME=Lista_Enlazada_EEDD
 
 # Active Configuration
 DEFAULTCONF=Debug

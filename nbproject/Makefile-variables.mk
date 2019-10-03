@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=MinGW-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/MinGW-Windows
-CND_ARTIFACT_NAME_Debug=lista_enlazada
-CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/lista_enlazada
+CND_ARTIFACT_NAME_Debug=lista_enlazada_eedd
+CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/lista_enlazada_eedd
 CND_PACKAGE_DIR_Debug=dist/Debug/MinGW-Windows/package
-CND_PACKAGE_NAME_Debug=listaenlazada.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/listaenlazada.tar
+CND_PACKAGE_NAME_Debug=listaenlazadaeedd.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/listaenlazadaeedd.tar
 # Release configuration
 CND_PLATFORM_Release=MinGW-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/MinGW-Windows
-CND_ARTIFACT_NAME_Release=lista_enlazada
-CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/lista_enlazada
+CND_ARTIFACT_NAME_Release=lista_enlazada_eedd
+CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/lista_enlazada_eedd
 CND_PACKAGE_DIR_Release=dist/Release/MinGW-Windows/package
-CND_PACKAGE_NAME_Release=listaenlazada.tar
-CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/listaenlazada.tar
+CND_PACKAGE_NAME_Release=listaenlazadaeedd.tar
+CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/listaenlazadaeedd.tar
 #
 # include compiler specific variables
 #
