@@ -1,2 +1,8 @@
 
 nbproject/private/private.xml
+build/Debug/MinGW-Windows/fecha.o
+build/Debug/MinGW-Windows/main.o
+dist/Debug/MinGW-Windows/lista_enlazada.exe
+build/Debug/MinGW-Windows/main.o.d
+build/Debug/MinGW-Windows/fecha.o.d
+.dep.inc
