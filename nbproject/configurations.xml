@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Cliente.h</itemPath>
+      <itemPath>ListaDEnlazada.h</itemPath>
       <itemPath>fecha.h</itemPath>
       <itemPath>vectordinamico.h</itemPath>
     </logicalFolder>
@@ -42,6 +43,8 @@
       </compileType>
       <item path="Cliente.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ListaDEnlazada.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="fecha.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="fecha.h" ex="false" tool="3" flavor2="0">
@@ -72,6 +75,8 @@
         </asmTool>
       </compileType>
       <item path="Cliente.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ListaDEnlazada.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="fecha.cpp" ex="false" tool="1" flavor2="0">
       </item>
