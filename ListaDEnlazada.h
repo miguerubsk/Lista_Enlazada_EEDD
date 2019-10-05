@@ -40,17 +40,21 @@ private:
     T dato;
     //Creamos el nodo siguiente
     Nodo<T>* siguiente;
+    //Creamos el nodo anterior
+    Nodo<T>* anterior;
     //En la practica ponia el uso de la clase friend pero la hemos comentado porque da mil errores con los templates.
 public:
     //Creamos los constructores por defecto, parametros y copia.
     Nodo();
-    Nodo(T& adato, Nodo<T>* sig);
+    Nodo(T &aDato, Nodo *aAnt, Nodo *aSig): dato(aDato), anterior(aAnt), siguiente(aSig) {}
     Nodo(const Nodo<T>& orig);
     //Creamos los metodos gets y set
     T& getDato() { return dato; }
     void setDato(T& mdato) { dato = mdato; }
     Nodo<T>* getSiguiente() { return siguiente; }
+    Nodo<T>* getAnterior() { return anterior; }
     void setSiguiente(Nodo<T>* sig) { siguiente = sig; }
+    void setAnterior(Nodo<T>* ant) { anterior = ant; }
     //Creamos el destructor.
     ~Nodo() { siguiente = 0; }
 };
@@ -58,18 +62,21 @@ public:
 template <class T>
 Nodo<T>::Nodo() :dato() {
     siguiente = 0;
+    anterior = 0;
 }
 
 //Implementamos el constructor por parametros
 template <class T>
-Nodo<T>::Nodo(T& mdato, Nodo<T>* sig) : dato(mdato) {
+Nodo<T>::Nodo(T& mdato,Nodo<T>* ant, Nodo<T>* sig) : dato(mdato) {
     siguiente = sig;
+    anterior = ant;
 }
 
 //Implementamos el constructor copia
 template <class T>
 Nodo<T>::Nodo(const Nodo<T>& orig) : dato(orig.dato) {
     siguiente = orig.siguiente;
+    anterior = orig.anterior;
 }
 
 template <class T>
@@ -86,10 +93,12 @@ public:
     Iterador();
     Iterador(const Iterador<T>& orig);
     Iterador(Nodo<T> *mNodo) : nodo(mNodo) {}
-    //Creamos los metodos para saber si hay un nodo  siguiente
+    //Creamos los metodos para saber si hay un nodo  siguiente y anterior
     bool haySiguiente() { return nodo->getSiguiente() != 0; }
+    bool hayAnterior() { return nodo->getAnterior() != 0; }
     //Creamos los metodos para pasar de un nodo a otro uno para el anterior y otro para el siguiente.
     void siguiente() { nodo = nodo->getSiguiente(); }
+    void anterior() { nodo = nodo->getAnterior(); }
     //Creamos el metodo para obtener el dato;
     T& getDato() { return nodo->getDato(); }
     //Creamos el metodo para obtener el nodo.
@@ -194,19 +203,26 @@ template <class T>
 void ListaDEnlazada<T>::insertarInicio(T& mdato) {
     //numeroelementos++;
     
-    Nodo<T>* nodo = new Nodo<T>(mdato, cabecera);
+    ;
+    Nodo<T> *nodo;
+    nodo = new Nodo<T>(mdato, 0, cabecera);
     //si no hay ningun elememto, la lista esta vacia
     if(cola==0){
         cola=nodo;
     }
-        cabecera=nodo;
+    
+    if(cabecera != 0){
+        cabecera->setAnterior(nodo);
+    }
+    cabecera=nodo;
+        
         numeroelementos++;
 }
 
 template <class T>
 void ListaDEnlazada<T>::insertarFinal(T& mdato) {
     
-    Nodo<T>* nodo = new Nodo<T>(mdato, 0);
+    Nodo<T>* nodo =  new Nodo<T>(mdato, cola, 0);
     //si no hay ningun elememto, la lista esta vacia
     if (cola != 0)
         cola->setSiguiente(nodo);
@@ -214,6 +230,7 @@ void ListaDEnlazada<T>::insertarFinal(T& mdato) {
         cabecera = nodo;
    
     } 
+    nodo->setAnterior(cola);
         cola=nodo;
         numeroelementos++;
 }
@@ -232,7 +249,7 @@ void ListaDEnlazada<T>::insertar(Iterador<T>& i, T& mdato) {
         if (i.getNodo() == cola) insertarFinal(mdato);
         else {
             //Si el iterador apunta a una posicion entre la cabecera y la cola, debemos insertarlo en la posicion .
-            Nodo<T>* nodo = new Nodo<T>(mdato, i.getNodo());
+            Nodo<T>* nodo =  new Nodo<T>(mdato, i->anterior(), i);
             i.getNodo()->setSiguiente(nodo);
             numeroelementos++;
         }
@@ -286,23 +303,19 @@ void ListaDEnlazada<T>::borrarFinal() {
 template <class T>
 void ListaDEnlazada<T>::borrar(Iterador<T>& i) {
 //    //Comprobamos que el iterador exista y si no existe lanzamos la excepcion.
-//    if (!i.existe()) throw std::out_of_range("Fuera de rango");
-//    //Si el iterador es igual a la cabecera usamos la funcion borrarInicio()
-//    if (i.getNodo() == cabecera) borrarInicio();
-//    else {
-//        //Si el iterador es igual a la cola usamos la funcion borrarFinal()
-//        if (i.getNodo() == cola) borrarFinal();
-//        else {
-//            
-//            Iterador<T>* it=new Iterador<T>(cabecera);
-//            while(it->haySiguiente() && it->siguiente()->getDato()!=i.getDato()){
-//                it->siguiente();
-//            }
-//            it->getNodo()->setSiguiente(i.getNodo()->getSiguiente());
-//            delete i.getNodo();
-//            numeroelementos--;
-//        }
-//    }
+    if (!i.existe()) throw std::out_of_range("Fuera de rango");
+    //Si el iterador es igual a la cabecera usamos la funcion borrarInicio()
+    if (i.getNodo() == cabecera) borrarInicio();
+    else {
+        //Si el iterador es igual a la cola usamos la funcion borrarFinal()
+        if (i.getNodo() == cola) borrarFinal();
+        else {
+            i->getNodo()->getAnterior()->setSiguiente(i.getNodo()->getSiguiente());
+            i.getNodo()->getSiguiente()->setAnterior(i.getNodo()->getAnterior());
+            delete i.getNodo();
+            numeroelementos--;
+        }
+    }
 }
 
 template <class T>
@@ -318,25 +331,25 @@ ListaDEnlazada<T>::~ListaDEnlazada() {
 //    numeroelementos=0;
 }
 
-//template <class T>
-//ListaEnlazada<T>& ListaEnlazada<T>::UnirListas(ListaEnlazada<T> &l1, ListaEnlazada<T> &l2) {
-//    if(!l1.iteradorInicio().haySiguiente() || !l2.iteradorInicio().haySiguiente() ) throw std::string ("Lista vacia");
-//    ListaEnlazada<T> lista;
-//    Iterador<T> auxiliar=l1.iteradorInicio();
-//    Iterador<T> auxiliar1=l2.iteradorInicio();
-//    for (int i = 0; i < l1.getNumeroelementos(); i++) {
-//        lista.insertarFinal(auxiliar.getDato());
-//        auxiliar.siguiente();
-//
-//    }
-//    for (int x = 0; x < l2.getNumeroelementos(); x++) {
-//        lista.insertarFinal(auxiliar1.getDato());
-//        auxiliar1.siguiente();
-//
-//    }
-//    return lista;
-//    /*retorna lista1*/
-//}
+template <class T>
+ListaDEnlazada<T>& ListaDEnlazada<T>::UnirListas(ListaDEnlazada<T> &L1, ListaDEnlazada<T> &L2) {
+    if(!L1.iteradorInicio().haySiguiente() || !L2.iteradorInicio().haySiguiente() ) throw std::string ("Lista vacia");
+    ListaDEnlazada<T> lista;
+    Iterador<T> auxiliar=L1.iteradorInicio();
+    Iterador<T> auxiliar1=L2.iteradorInicio();
+    for (int i = 0; i < L1.getNumeroelementos(); i++) {
+        lista.insertarFinal(auxiliar.getDato());
+        auxiliar.siguiente();
+
+    }
+    for (int x = 0; x < L2.getNumeroelementos(); x++) {
+        lista.insertarFinal(auxiliar1.getDato());
+        auxiliar1.siguiente();
+
+    }
+    return lista;
+    /*retorna lista1*/
+}
 
 
 #endif /* LISTADENLAZADA_H */
