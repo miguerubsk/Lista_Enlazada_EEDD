@@ -8,3 +8,5 @@ build/Debug/MinGW-Windows/fecha.o.d
 .dep.inc
 dist/Debug/MinGW-Windows/lista_enlazada_eedd.exe
 nbproject/Makefile-Debug.mk
+*.o
+*.exe
