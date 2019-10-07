@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Cliente.h</itemPath>
+      <itemPath>Itinerario.h</itemPath>
       <itemPath>ListaDEnlazada.h</itemPath>
       <itemPath>fecha.h</itemPath>
       <itemPath>vectordinamico.h</itemPath>
@@ -16,6 +17,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Itinerario.cpp</itemPath>
       <itemPath>fecha.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -42,6 +44,10 @@
       <compileType>
       </compileType>
       <item path="Cliente.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Itinerario.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Itinerario.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ListaDEnlazada.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -75,6 +81,10 @@
         </asmTool>
       </compileType>
       <item path="Cliente.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Itinerario.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Itinerario.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ListaDEnlazada.h" ex="false" tool="3" flavor2="0">
       </item>
