@@ -14,23 +14,6 @@
 #ifndef LISTADENLAZADA_H
 #define LISTADENLAZADA_H
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   listaenlazada.h
- * Author: Fernando
- *
- * Created on 15 de octubre de 2018, 10:59
- */
-
-#ifndef LISTAENLAZADA_H
-#define LISTAENLAZADA_H
-
-
 #include <stdexcept>
 
 template <class T>
@@ -63,13 +46,6 @@ template <class T>
 Nodo<T>::Nodo() :dato() {
     siguiente = 0;
     anterior = 0;
-}
-
-//Implementamos el constructor por parametros
-template <class T>
-Nodo<T>::Nodo(T& mdato,Nodo<T>* ant, Nodo<T>* sig) : dato(mdato) {
-    siguiente = sig;
-    anterior = ant;
 }
 
 //Implementamos el constructor copia
@@ -161,7 +137,7 @@ private:
 public:
     ListaDEnlazada(){ cabecera=cola=0; numeroelementos=0;};
     ListaDEnlazada(Nodo<T>* cabe, Nodo<T>* col) { cabecera = cabe; cola=col;}
-    ListaDEnlazada(const ListaDEnlazada &orig) { cabecera = orig.cabecera; cola=orig.cola; }
+    ListaDEnlazada(const ListaDEnlazada &orig);
     //Creamos el operador = de la clase.
     ListaDEnlazada<T> &operator=(ListaDEnlazada &lista);
     //Creamos los metodos para obtener los iteradores de Inicio y Final.
@@ -203,7 +179,7 @@ template <class T>
 void ListaDEnlazada<T>::insertarInicio(T& mdato) {
     //numeroelementos++;
     
-    ;
+    
     Nodo<T> *nodo;
     nodo = new Nodo<T>(mdato, 0, cabecera);
     //si no hay ningun elememto, la lista esta vacia
@@ -218,6 +194,16 @@ void ListaDEnlazada<T>::insertarInicio(T& mdato) {
         
         numeroelementos++;
 }
+
+template <class T>
+ListaDEnlazada<T>::ListaDEnlazada(const ListaDEnlazada &orig) {
+    Nodo<T> *aux = orig.cabecera;
+    while (aux != 0) {
+        this->insertarFinal(aux->getDato());
+        aux = aux->getSiguiente();
+    }
+}
+
 
 template <class T>
 void ListaDEnlazada<T>::insertarFinal(T& mdato) {
