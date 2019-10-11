@@ -320,20 +320,21 @@ ListaDEnlazada<T>::~ListaDEnlazada() {
 template <class T>
 ListaDEnlazada<T>& ListaDEnlazada<T>::UnirListas(ListaDEnlazada<T> &L1, ListaDEnlazada<T> &L2) {
     if(!L1.iteradorInicio().haySiguiente() || !L2.iteradorInicio().haySiguiente() ) throw std::string ("Lista vacia");
-    ListaDEnlazada<T> lista;
+    //ListaDEnlazada<T> lista;
     Iterador<T> auxiliar=L1.iteradorInicio();
     Iterador<T> auxiliar1=L2.iteradorInicio();
     for (int i = 0; i < L1.getNumeroelementos(); i++) {
-        lista.insertarFinal(auxiliar.getDato());
+        this->insertarFinal(auxiliar.getDato());
         auxiliar.siguiente();
 
     }
     for (int x = 0; x < L2.getNumeroelementos(); x++) {
-        lista.insertarFinal(auxiliar1.getDato());
+        this->insertarFinal(auxiliar1.getDato());
         auxiliar1.siguiente();
 
     }
-    return lista;
+    return *this;
+    //return lista;
     /*retorna lista1*/
 }
 

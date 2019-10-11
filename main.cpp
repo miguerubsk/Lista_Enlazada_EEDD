@@ -151,19 +151,30 @@ int main(int argc, char** argv) {
 //    //Aqui mostramos el tiempo que tarda en calcular la distancia para hacernos una idea de la eficiencia de dicha eedd
 //    cout << "Tiempo de cálculo: " << time << " segundos\n";
 //
-    ListaDEnlazada<int> e1;
+    ListaDEnlazada<int> e1,e2,e3;
     for(int i=0; i<10; i++){
         e1.insertarFinal(i);
     }
+    for(int i=0; i<20; i++){
+        e2.insertarFinal(i);
+    }
     //ListaDEnlazada<int> e2(e1);
+    e3.UnirListas(e1,e2);
     
+    //cout<<"La lista antigua tiene: "<<e1.getNumeroelementos()<<" elementos"<<endl;
     
-    cout<<"La lista antigua tiene: "<<e1.getNumeroelementos()<<" elementos"<<endl;
-    
-    ListaDEnlazada<int> e2(e1);
+    //ListaDEnlazada<int> e2(e1);
 
-    cout<<"La lista antigua tiene: "<<e1.getNumeroelementos()<<" elementos"<<endl;
-    cout<<"La lista nueva tiene: "<<e2.getNumeroelementos()<<" elementos"<<endl;
-
+    cout<<"La lista 1 tiene: "<<e1.getNumeroelementos()<<" elementos"<<endl;
+    cout<<"La lista 2 tiene: "<<e2.getNumeroelementos()<<" elementos"<<endl;
+    cout<<"La lista unida tiene: "<<e3.getNumeroelementos()<<" elementos"<<endl;
+    cout<<"DATO primero: "<<e3.iteradorInicio().getNodo()->getDato()<<" :de la lista unida"<<endl;
+    cout<<"DATO final: "<<e3.iteradorFinal().getNodo()->getDato()<<" :de la lista unida"<<endl;
+    Iterador<int> it=e3.iteradorInicio();
+    cout<<"//////////DATOS DE LA LISTAS UNIDAS//////////"<<endl;
+    for(int i=0; i<e3.getNumeroelementos(); i++){
+               cout<<"DATO "<<i<<" : "<<it.getDato()<<endl;
+               it.siguiente();
+    }
     return 0;
 }
