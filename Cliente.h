@@ -53,8 +53,8 @@ public:
     UTM GetUTM() const {
         return posicion;
     }
-        ListaDEnlazada<Itinerario> Getitinerarios() const {
-        return itinerarios;
+    ListaDEnlazada<Itinerario> Getitinerarios() const {
+    return itinerarios;
     }
 
     bool operator==(const Cliente& orig) {
