@@ -53,6 +53,9 @@ public:
     UTM GetUTM() const {
         return posicion;
     }
+        ListaDEnlazada<Itinerario> Getitinerarios() const {
+        return itinerarios;
+    }
 
     bool operator==(const Cliente& orig) {
         std::size_t found = this->nombre.find(orig.nombre);
@@ -117,7 +120,7 @@ public:
             itinerarios.insertarFinal(viaje);
         }
     }
-
+        
 
 
 };

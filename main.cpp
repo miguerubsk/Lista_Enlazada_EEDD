@@ -198,7 +198,9 @@ int main(int argc, char** argv) {
             IdUltimo += num;
             cout << "Cliente " << i << " creado con " << num << " Itinerarios" << endl;
         }
-
+        Iterador<Itinerario> it=v[2].Getitinerarios().iteradorInicio();
+        cout<<"Id: "<<it.getDato().GetId()<<endl;
+        
         //Tratamiento de errores
     } catch (ErrorFechaIncorrecta &e) {
         std::cerr << "Fecha Incorrecta: " << std::endl;
