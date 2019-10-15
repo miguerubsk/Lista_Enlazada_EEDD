@@ -177,6 +177,7 @@ int main(int argc, char** argv) {
        cout << "Comienzo de lectura de un fichero " << endl;    
        leeClientes ("clientes_v2.csv",v);
        MaxMinLatLon(v, mayorLon, mayorLat, menorLon, menorLat);
+       v.ordenar();
        //mostramos vector ordenado              
        for (long int i=0; i<v.tam(); ++i)
            std::cout<<  i << ": " << v[i].GetNOMBRE() << ";" << v[i].GetDNI() <<std::endl; 
