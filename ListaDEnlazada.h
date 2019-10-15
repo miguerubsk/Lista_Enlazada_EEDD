@@ -157,6 +157,7 @@ public:
     void setNumeroelementos(int numeroelementos);
     int getNumeroelementos() const;
     ListaDEnlazada<T> &UnirListas(ListaDEnlazada<T> &l1, ListaDEnlazada<T> &l2);
+    ListaDEnlazada<T>& Concatena( ListaDEnlazada<T> &l);
 };
 
 template <class T>
@@ -198,12 +199,13 @@ void ListaDEnlazada<T>::insertarInicio(T& mdato) {
 template <class T>
 ListaDEnlazada<T>::ListaDEnlazada(const ListaDEnlazada &orig) {
     Nodo<T> *p;
-    //cabecera=0;
-    //cola=0;
-    p=this->cabecera;    
+    cabecera=0;
+    cola=0;
+    numeroelementos=0;
+    p=orig.cabecera;    
     
     while (p!=0){
-        insertarInicio(p->getDato());// .leer(i++));
+        insertarFinal(p->getDato());// .leer(i++));
         p=p->getSiguiente();
     }
 }
@@ -220,7 +222,7 @@ void ListaDEnlazada<T>::insertarFinal(T& mdato) {
         cabecera = nodo;
    
     } 
-    nodo->setAnterior(cola);
+    //nodo->setAnterior(cola);
         cola=nodo;
         numeroelementos++;
 }
@@ -321,6 +323,19 @@ ListaDEnlazada<T>::~ListaDEnlazada() {
 //    numeroelementos=0;
 }
 
+template <class T>
+ListaDEnlazada<T>& ListaDEnlazada<T>::Concatena(ListaDEnlazada<T> &lista){
+if(!this->iteradorInicio().haySiguiente() || !lista.iteradorInicio().haySiguiente() ) throw std::string ("Lista vacia");
+    ListaDEnlazada<T> listaauxiliar(*this);
+    Iterador<T> auxiliar1=lista.iteradorInicio();
+
+    for (int x = 0; x < lista.getNumeroelementos(); x++) {
+        listaauxiliar.insertarFinal(auxiliar1.getDato());
+        auxiliar1.siguiente();
+
+    }
+    return listaauxiliar;
+}
 template <class T>
 ListaDEnlazada<T>& ListaDEnlazada<T>::UnirListas(ListaDEnlazada<T> &L1, ListaDEnlazada<T> &L2) {
     if(!L1.iteradorInicio().haySiguiente() || !L2.iteradorInicio().haySiguiente() ) throw std::string ("Lista vacia");

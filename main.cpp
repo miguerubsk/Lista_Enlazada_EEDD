@@ -206,23 +206,35 @@ int main(int argc, char** argv) {
             std::cerr << "No hay memoria suficiente para el objeto dinamico" << std::endl;     
      }
        
-     //PROBAR CONTRUCTOR COPIA LISTA ENLAZDA//
+//    //PROBAR CONTRUCTOR COPIA LISTA ENLAZDA//
     ListaDEnlazada<int> e1;
-    for(int i=0; i<20;i++){
+    for(int i=0; i<=20;i++){
         e1.insertarInicio(i);
     }
     Iterador<int> it=e1.iteradorInicio();
-    for(int i=0; i<e1.getNumeroelementos();i++){    
-    cout<<"Dato nº "<<i<<" : "<<it.getDato()<<endl;
+    for(int i=0; i<e1.getNumeroelementos()-1;i++){    
+    cout<<"Dato nº "<<i+1<<" : "<<it.getDato()<<endl;
     it.siguiente();
     }
     cout<<"---------------CONSTRUCTOR COPIA----------"<<endl;
     ListaDEnlazada<int> e2(e1);
-    Iterador<int> it1=e2.iteradorInicio();
-    for(int i=0; i<e2.getNumeroelementos();i++){    
-    cout<<"Dato nº "<<i<<" : "<<it1.getDato()<<endl;
-    it1.siguiente();
-    }
+    cout<<"Nº elementos de la lista 1: "<<e1.getNumeroelementos()<<endl;
+    cout<<"Nº elementos de la lista copiada: "<<e2.getNumeroelementos()<<endl;
 //PROBAR CONTRUCTOR COPIA LISTA ENLAZDA//
+    cout<<"--------------PROBAR UNIR LISTAS-------------"<<endl;
+    ListaDEnlazada<int> lista1,lista2,lista3;
+    for(int i=0; i<=20;i++){
+        lista1.insertarInicio(i);
+    }
+    for(int i=0; i<=35;i++){
+        lista2.insertarInicio(i);
+    }    
+    //lista3=lista1.Concatena(lista2);
+    lista3.UnirListas(lista1,lista2);
+    Iterador<int> itlista=lista3.iteradorInicio();
+    for(int i=0; i<lista3.getNumeroelementos()-1;i++){    
+    cout<<"Dato nº "<<i<<" : "<<itlista.getDato()<<endl;
+    itlista.siguiente();
+    }
     return 0;
 }
