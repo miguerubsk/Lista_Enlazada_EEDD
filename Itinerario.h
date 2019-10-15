@@ -6,7 +6,7 @@
 
 /* 
  * File:   Itinerario.h
- * Author: Miguerubsk
+ * Author: Miguel González García y Fernando Jiménez Quesada
  *
  * Created on 5 de octubre de 2019, 11:33
  */
@@ -18,12 +18,12 @@
 #include <cstdlib>
 #include "UTM.h"
 
-
 class Itinerario {
 public:
     Itinerario(int _id, UTM &_inicio, UTM &_fin, Fecha &_fecha, int _minutos);
     Itinerario(const Itinerario& orig);
     virtual ~Itinerario();
+
     Fecha GetFecha() const {
         return fecha;
     }
@@ -66,7 +66,7 @@ public:
 
 
 private:
-    
+
     int id, minutos;
     UTM inicio, fin;
     Fecha fecha;

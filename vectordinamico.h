@@ -28,15 +28,15 @@ public:
     T& operator[](unsigned int pos);
     void insertar(const T& dato, unsigned int pos = UINT_MAX);
     unsigned int tam();
-    T eliminar (unsigned long int pos=UINT_MAX);
+    T eliminar(unsigned long int pos = UINT_MAX);
     void asigna(const T &p, unsigned int pos);
     T& recupera(unsigned int pos);
     int busquedaBin(T& p);
     vectordinamico& operator<(const vectordinamico<T>& right);
     void ordenar();
 private:
-    void aumenta(); 
-    void disminuye(); 
+    void aumenta();
+    void disminuye();
     unsigned long int taml, tamf;
     T *vec;
 };
@@ -103,7 +103,7 @@ vectordinamico<T>& vectordinamico<T>::operator=(const vectordinamico& right) {
 template <class T>
 T& vectordinamico<T>::operator[](unsigned int pos) {
     if (pos < 0 || pos > taml) throw std::string("La posicion es erronea");
-    
+
     return vec[pos];
 }
 
@@ -139,49 +139,49 @@ void vectordinamico<T>::insertar(const T& dato, unsigned int pos) {
 }
 
 template<class T>
-void vectordinamico<T>::aumenta(){
+void vectordinamico<T>::aumenta() {
     T *vaux;
-    vaux= new T[tamf=tamf*2];
-    for(unsigned i=0;i<taml;i++)
-        vaux[i]=vec[i];
+    vaux = new T[tamf = tamf * 2];
+    for (unsigned i = 0; i < taml; i++)
+        vaux[i] = vec[i];
     delete []vec;
-    vec=vaux;
-}; 
+    vec = vaux;
+};
 
 template<class T>
-void vectordinamico<T>::disminuye(){
-    tamf=tamf/2;
+void vectordinamico<T>::disminuye() {
+    tamf = tamf / 2;
     T *vaux = new T[tamf];
-    for(unsigned i=0;i<taml;i++){
-        vaux[i]=vec[i];
+    for (unsigned i = 0; i < taml; i++) {
+        vaux[i] = vec[i];
     };
     delete []vec;
-    vec=vaux;
-}; 
+    vec = vaux;
+};
 
 template<class T>
-T vectordinamico<T>::eliminar (unsigned long int pos){
-      T aux;
-      if (taml==0)
-          throw std::out_of_range("Error taml=0");
-      if (pos==UINT_MAX){
-        if(taml*3<tamf) {
-             disminuye();
-        }; 
-        aux=vec[taml-1];
-      }else{
-        if (pos>=taml)
-             throw std::out_of_range("Error poscion mayor igual a taml");
-        if(taml*3<tamf) {
-             disminuye();
+T vectordinamico<T>::eliminar(unsigned long int pos) {
+    T aux;
+    if (taml == 0)
+        throw std::out_of_range("Error taml=0");
+    if (pos == UINT_MAX) {
+        if (taml * 3 < tamf) {
+            disminuye();
         };
-        aux=vec[pos];
-        for(unsigned i=pos;i<taml-1;i++){
-           vec[i]=vec[i+1];
+        aux = vec[taml - 1];
+    } else {
+        if (pos >= taml)
+            throw std::out_of_range("Error poscion mayor igual a taml");
+        if (taml * 3 < tamf) {
+            disminuye();
+        };
+        aux = vec[pos];
+        for (unsigned i = pos; i < taml - 1; i++) {
+            vec[i] = vec[i + 1];
         }
-      }
-     taml--;
-     return aux;
+    }
+    taml--;
+    return aux;
 };
 
 template <class T>

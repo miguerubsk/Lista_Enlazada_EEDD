@@ -22,86 +22,104 @@
 
 /**
 @author Antonio J. Rueda
-*/
+ */
 
 #include <string>
 using namespace std;
 
-/** @brief Excepción que representa fechas incorrectas */
-class ErrorFechaIncorrecta {};
+/** @brief Excepciï¿½n que representa fechas incorrectas */
+class ErrorFechaIncorrecta {
+};
 
 /** @brief Clases sencilla para representar fechas y horas */
 class Fecha {
-  /** Fecha y hora */
-  unsigned dia, mes, anio, hora, min;
-	/** Dias por mes */
-	static const unsigned diasMes[12];
+    /** Fecha y hora */
+    unsigned dia, mes, anio, hora, min;
+    /** Dias por mes */
+    static const unsigned diasMes[12];
 
-	/** Comprobación de validez de una fecha */
-	void comprobarFecha(unsigned aDia, unsigned aMes, unsigned aAnio, unsigned aHora, unsigned aMin) const;
-	/** Función auxiliar de conversión desde estructura de tiempo tm de time.h */
-	void leerTiempo(const tm &t);
-	/** Función	auxiliar de conversión a estructura de tiempo tm de time.h */
-	void escribirTiempo(tm &t);
+    /** Comprobaciï¿½n de validez de una fecha */
+    void comprobarFecha(unsigned aDia, unsigned aMes, unsigned aAnio, unsigned aHora, unsigned aMin) const;
+    /** Funciï¿½n auxiliar de conversiï¿½n desde estructura de tiempo tm de time.h */
+    void leerTiempo(const tm &t);
+    /** Funciï¿½n	auxiliar de conversiï¿½n a estructura de tiempo tm de time.h */
+    void escribirTiempo(tm &t);
 
 public:
-	/** Crea una fecha con la hora actual */
-	Fecha();
-	/** Crea una fecha concreta. Devuelve una excepción ErrorFechaIncorrecta si la fecha introducida no es correcta */
-	Fecha(unsigned aDia, unsigned aMes, unsigned aAnio, unsigned aHora = 0, unsigned aMin = 0);
-	/** Constructor copia */
-	Fecha(const Fecha &f) : 
-		dia(f.dia), mes(f.mes), anio(f.anio), hora(f.hora), min(f.min) {}
+    /** Crea una fecha con la hora actual */
+    Fecha();
+    /** Crea una fecha concreta. Devuelve una excepciï¿½n ErrorFechaIncorrecta si la fecha introducida no es correcta */
+    Fecha(unsigned aDia, unsigned aMes, unsigned aAnio, unsigned aHora = 0, unsigned aMin = 0);
 
-	/** Asignar un nuevo día */
-	void asignarDia(unsigned aDia, unsigned aMes, unsigned aAnio);
-	/** Asignar una nueva hora */
-	void asignarHora(unsigned aHora, unsigned aMin);
+    /** Constructor copia */
+    Fecha(const Fecha &f) :
+    dia(f.dia), mes(f.mes), anio(f.anio), hora(f.hora), min(f.min) {
+    }
 
-	/** Obtener hora */
-	unsigned verHora() const { return hora; }
-	/** Obtener minutos */
-	unsigned verMin() const { return min; }
-	/** Obtener dia */
-	unsigned verDia() const { return dia; }
-	/** Obtener mes */
-	unsigned verMes() const { return mes; }
-	/** Obtener año */
-	unsigned verAnio() const { return anio; }
+    /** Asignar un nuevo dï¿½a */
+    void asignarDia(unsigned aDia, unsigned aMes, unsigned aAnio);
+    /** Asignar una nueva hora */
+    void asignarHora(unsigned aHora, unsigned aMin);
 
-	/** Obtener una cadena con el día */
-	string cadenaDia() const;
-	/** Obtener una cadena con la hora */
-	string cadenaHora() const;
-	/** Obtener una cadena con día y hora */
-	string cadena() const {
-		return cadenaDia() + " " + cadenaHora(); 
-	}
+    /** Obtener hora */
+    unsigned verHora() const {
+        return hora;
+    }
 
-	/** Indica si las dos fechas tienen el mismo día */
-	bool mismoDia(const Fecha &f) const {
-		return dia == f.dia && mes == f.mes && anio == f.anio; 
-	}
-	/** Comparar fechas */
-	bool operator<(const Fecha &f);
-	/** Asignar fechas */
-	Fecha &operator=(const Fecha &f);
+    /** Obtener minutos */
+    unsigned verMin() const {
+        return min;
+    }
 
-	/** Añadir un número de minutos indicado */
-	void anadirMin(int numMin);
-	/** Añadir un número de horas indicado*/
-	void anadirHoras(int numHoras);
-	/** Añadir un número de días indicado */
-	void anadirDias(int numDias);
-	/** Añadir un número de meses indicado */
-	void anadirMeses(int numMeses);
-	/** Añadir un número de años indicado */
-	void anadirAnios(int numAnios);
+    /** Obtener dia */
+    unsigned verDia() const {
+        return dia;
+    }
 
-	~Fecha();
+    /** Obtener mes */
+    unsigned verMes() const {
+        return mes;
+    }
+
+    /** Obtener aï¿½o */
+    unsigned verAnio() const {
+        return anio;
+    }
+
+    /** Obtener una cadena con el dï¿½a */
+    string cadenaDia() const;
+    /** Obtener una cadena con la hora */
+    string cadenaHora() const;
+
+    /** Obtener una cadena con dï¿½a y hora */
+    string cadena() const {
+        return cadenaDia() + " " + cadenaHora();
+    }
+
+    /** Indica si las dos fechas tienen el mismo dï¿½a */
+    bool mismoDia(const Fecha &f) const {
+        return dia == f.dia && mes == f.mes && anio == f.anio;
+    }
+    /** Comparar fechas */
+    bool operator<(const Fecha &f);
+    /** Asignar fechas */
+    Fecha &operator=(const Fecha &f);
+
+    /** Aï¿½adir un nï¿½mero de minutos indicado */
+    void anadirMin(int numMin);
+    /** Aï¿½adir un nï¿½mero de horas indicado*/
+    void anadirHoras(int numHoras);
+    /** Aï¿½adir un nï¿½mero de dï¿½as indicado */
+    void anadirDias(int numDias);
+    /** Aï¿½adir un nï¿½mero de meses indicado */
+    void anadirMeses(int numMeses);
+    /** Aï¿½adir un nï¿½mero de aï¿½os indicado */
+    void anadirAnios(int numAnios);
+
+    ~Fecha();
 };
 
-/** Serialización de fechas */
+/** Serializaciï¿½n de fechas */
 ostream &operator<<(ostream &os, const Fecha &f);
 
 #endif

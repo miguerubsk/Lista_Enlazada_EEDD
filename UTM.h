@@ -6,28 +6,32 @@
 
 /* 
  * File:   UTM.h
- * Author: admin
+ * Author: Miguel González García y Fernando Jiménez Quesada
  *
  * Created on 3 de octubre de 2019, 13:58
  */
 
 #ifndef UTM_H
 #define UTM_H
- class UTM{
- private:
+
+class UTM {
+private:
     double latitud;
     double longitud;
- public:
-    UTM (double _lat=0.0, double _long=0.0): latitud(_lat), longitud (_long){}
+public:
+
+    UTM(double _lat = 0.0, double _long = 0.0) : latitud(_lat), longitud(_long) {
+    }
+
     double GetLongitud() const {
-    return longitud;
+        return longitud;
     }
 
     double GetLatitud() const {
         return latitud;
     }
 
- };
+};
 
 
 #endif /* UTM_H */
