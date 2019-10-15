@@ -168,7 +168,7 @@ int main(int argc, char** argv) {
 //    double time = (double(t1 - t0) / CLOCKS_PER_SEC);
 //    //Aqui mostramos el tiempo que tarda en calcular la distancia para hacernos una idea de la eficiencia de dicha eedd
 //    cout << "Tiempo de cálculo: " << time << " segundos\n";
-//
+
     vectordinamico<Cliente> v; 
      double mayorLon, mayorLat, menorLon, menorLat;
      setlocale(LC_ALL,"es_ES.UTF8"); 
@@ -206,5 +206,23 @@ int main(int argc, char** argv) {
             std::cerr << "No hay memoria suficiente para el objeto dinamico" << std::endl;     
      }
        
+     //PROBAR CONTRUCTOR COPIA LISTA ENLAZDA//
+    ListaDEnlazada<int> e1;
+    for(int i=0; i<20;i++){
+        e1.insertarInicio(i);
+    }
+    Iterador<int> it=e1.iteradorInicio();
+    for(int i=0; i<e1.getNumeroelementos();i++){    
+    cout<<"Dato nº "<<i<<" : "<<it.getDato()<<endl;
+    it.siguiente();
+    }
+    cout<<"---------------CONSTRUCTOR COPIA----------"<<endl;
+    ListaDEnlazada<int> e2(e1);
+    Iterador<int> it1=e2.iteradorInicio();
+    for(int i=0; i<e2.getNumeroelementos();i++){    
+    cout<<"Dato nº "<<i<<" : "<<it1.getDato()<<endl;
+    it1.siguiente();
+    }
+//PROBAR CONTRUCTOR COPIA LISTA ENLAZDA//
     return 0;
 }

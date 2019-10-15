@@ -198,13 +198,13 @@ void ListaDEnlazada<T>::insertarInicio(T& mdato) {
 template <class T>
 ListaDEnlazada<T>::ListaDEnlazada(const ListaDEnlazada &orig) {
     Nodo<T> *p;
-    cabecera=0;
-    cola=0;
-    p=l.cabecera;    
+    //cabecera=0;
+    //cola=0;
+    p=this->cabecera;    
     
     while (p!=0){
-        insertarFinal(p->dato);// .leer(i++));
-        p=p->sig;
+        insertarInicio(p->getDato());// .leer(i++));
+        p=p->getSiguiente();
     }
 }
 
