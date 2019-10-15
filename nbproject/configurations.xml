@@ -7,6 +7,7 @@
       <itemPath>Cliente.h</itemPath>
       <itemPath>Itinerario.h</itemPath>
       <itemPath>ListaDEnlazada.h</itemPath>
+      <itemPath>UTM.h</itemPath>
       <itemPath>fecha.h</itemPath>
       <itemPath>vectordinamico.h</itemPath>
     </logicalFolder>
@@ -51,6 +52,8 @@
       </item>
       <item path="ListaDEnlazada.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="UTM.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="fecha.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="fecha.h" ex="false" tool="3" flavor2="0">
@@ -87,6 +90,8 @@
       <item path="Itinerario.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ListaDEnlazada.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="UTM.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="fecha.cpp" ex="false" tool="1" flavor2="0">
       </item>
