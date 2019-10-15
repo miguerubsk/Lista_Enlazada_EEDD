@@ -14,99 +14,113 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
+#include "UTM.h"
+#include "random.h"
+#include "fecha.h"
+#include "Itinerario.h"
+#include "ListaDEnlazada.h"
+
 using namespace std;
 
-struct UTM {
-    double latitud;
-    double longitud;
-
-    UTM(double _lat, double _long) : latitud(_lat), longitud(_long) {
-    }
-
-    UTM() : latitud(0), longitud(0) {
-    }
-};
 
 class Cliente {
-public:
-    //Constructor
+    
+    private:
+        string dni;
+        string pass;
+        string nombre;
+        string direccion;
+        ListaDEnlazada<Itinerario> itinerarios;
+        UTM posicion;
 
-    Cliente() : dni("0"), pass("0"), nombre("0"), direccion("0"), posicion(0.0, 0.0) {
-    }
+    
+    public:
+        //Constructor
 
-    Cliente(string _dni, string _pass, string _nombre, string _direccion, double _latitud, double _longitud) :
-    dni(_dni), pass(_pass), nombre(_nombre), direccion(_direccion), posicion(_latitud, _longitud) {
-    }
+        Cliente() : dni("0"), pass("0"), nombre("0"), direccion("0"), posicion(0.0, 0.0) {
+        }
 
-    string GetDNI() const {
-        return dni;
-    }
+        Cliente(string _dni, string _pass, string _nombre, string _direccion, double _latitud, double _longitud) :
+        dni(_dni), pass(_pass), nombre(_nombre), direccion(_direccion), posicion(_latitud, _longitud) {
+        }
 
-    string GetNOMBRE() const {
-        return nombre;
-    }
+        string GetDNI() const {
+            return dni;
+        }
 
-    UTM GetUTM() const {
-        return posicion;
-    }
+        string GetNOMBRE() const {
+            return nombre;
+        }
 
-    bool operator==(const Cliente& orig) {
-        std::size_t found = this->nombre.find(orig.nombre);
+        UTM GetUTM() const {
+            return posicion;
+        }
 
-        if (found != std::string::npos)
-            return true;
+        bool operator==(const Cliente& orig) {
+            std::size_t found = this->nombre.find(orig.nombre);
 
-        return false;
-    }
+            if (found != std::string::npos)
+                return true;
 
-    bool operator<(Cliente& right) const {
-        return (nombre < right.nombre);
-    }
+            return false;
+        }
 
-    bool operator>(Cliente& right) const {
-        return (nombre > right.nombre);
-    }
+        bool operator<(Cliente& right) const {
+            return (nombre < right.nombre);
+        }
 
-    void SetDireccion(string direccion) {
-        this->direccion = direccion;
-    }
+        bool operator>(Cliente& right) const {
+            return (nombre > right.nombre);
+        }
 
-    void SetDni(string dni) {
-        this->dni = dni;
-    }
+        void SetDireccion(string direccion) {
+            this->direccion = direccion;
+        }
 
-    void SetNombre(string nombre) {
-        this->nombre = nombre;
-    }
+        void SetDni(string dni) {
+            this->dni = dni;
+        }
 
-    void SetPass(string pass) {
-        this->pass = pass;
-    }
+        void SetNombre(string nombre) {
+            this->nombre = nombre;
+        }
 
-    void SetPosicion(UTM posicion) {
-        this->posicion = posicion;
-    }
+        void SetPass(string pass) {
+            this->pass = pass;
+        }
 
-    Cliente& operator=(const Cliente &orig) {
-        dni = orig.dni;
-        nombre = orig.nombre;
-        direccion = orig.direccion;
-        pass = orig.pass;
-        posicion = orig.posicion;
-        return *this;
-    }
+        void SetPosicion(UTM posicion) {
+            this->posicion = posicion;
+        }
 
-    double distancia(const Cliente &cli) {
-        return sqrt(pow(cli.posicion.latitud - this->posicion.latitud, 2) + pow(cli.posicion.longitud - this->posicion.longitud, 2));
-    }
+        Cliente& operator=(const Cliente &orig) {
+            dni = orig.dni;
+            nombre = orig.nombre;
+            direccion = orig.direccion;
+            pass = orig.pass;
+            posicion = orig.posicion;
+            return *this;
+        }
 
-private:
-    string dni;
-    string pass;
-    string nombre;
-    string direccion;
+        double distancia(const Cliente &cli) {
+            return sqrt(pow((cli.posicion.GetLatitud()-this->posicion.GetLatitud()),2)+pow((cli.posicion.GetLongitud()-this->posicion.GetLongitud()),2));
+        }
 
-    UTM posicion;
+        void crearItinerarios(int num, int IdUltimo, const UTM &min, const UTM &max){
+            Set_random(rand());
+            for (int i=0; i<num; i++){
+                Fecha f(rand()%28+1,rand()%12+1,rand()%10+2019);
+                UTM inicio( Randfloat(min.GetLatitud(),max.GetLatitud()),
+                            Randfloat(min.GetLongitud(),max.GetLongitud()));
+                UTM fin( Randfloat(min.GetLatitud(),max.GetLatitud()),
+                            Randfloat(min.GetLongitud(),max.GetLongitud()));
+                int minutos = rand()%100;
+                Itinerario viaje(++IdUltimo,inicio,fin,f,minutos);
+                itinerarios.insertarFinal(viaje);
+            }
+        }
+
+
 
 };
 

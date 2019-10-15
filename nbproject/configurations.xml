@@ -7,7 +7,9 @@
       <itemPath>Cliente.h</itemPath>
       <itemPath>Itinerario.h</itemPath>
       <itemPath>ListaDEnlazada.h</itemPath>
+      <itemPath>UTM.h</itemPath>
       <itemPath>fecha.h</itemPath>
+      <itemPath>random.h</itemPath>
       <itemPath>vectordinamico.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -51,11 +53,15 @@
       </item>
       <item path="ListaDEnlazada.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="UTM.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="fecha.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="fecha.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="random.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="vectordinamico.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -88,11 +94,15 @@
       </item>
       <item path="ListaDEnlazada.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="UTM.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="fecha.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="fecha.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="random.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="vectordinamico.h" ex="false" tool="3" flavor2="0">
       </item>

@@ -13,19 +13,16 @@
 
 #include "Itinerario.h"
 
-Itinerario::Itinerario() {
-    this->minutos = rand() % 101;
-
+Itinerario::Itinerario(int _id, UTM &_inicio, UTM &_fin, Fecha &_fecha, int _minutos):
+                id(_id), inicio(_inicio), fin(_fin), fecha(_fecha), minutos(_minutos)
+{
 }
 
-Itinerario::Itinerario(const Itinerario& orig) {
-    this->fecha = orig.fecha;
-    this->inicio = orig.inicio;
-    this->fin = orig.fin;
-    this->minutos = orig.minutos;
-    this->id = orig.id;
+Itinerario::Itinerario(const Itinerario& orig):
+             id(orig.id), inicio(orig.inicio), 
+             fin(orig.fin), fecha(orig.fecha), minutos(orig.minutos)
+{
 }
 
 Itinerario::~Itinerario() {
 }
-

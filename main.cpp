@@ -104,9 +104,27 @@ void leeClientes(string fileNameClientes, vectordinamico<Cliente> &v) {
     }
 }
 
+void MaxMinLatLon(vectordinamico<Cliente> v, double &maxLon, double &maxLat, double &minLon, double &minLat){
+       maxLon=-9999999, maxLat=-9999999, minLon=9999999, minLat=9999999;
+       for (int i=0; i<v.tama(); i++){
+           double x=v[i].GetPosicion().GetLongitud();
+           if (x>maxLon)
+               maxLon=x;
+           else
+               if (x<minLon)
+                   minLon=x;
+           x=v[i].GetPosicion().GetLatitud();
+           if (x>maxLat)
+               maxLat=x;
+           else
+               if (x<minLat)
+                   minLat=x;
+
+       }
+
 int main(int argc, char** argv) {
-//    vectordinamico<Cliente> vector;
-//    unsigned t0, t1;
+//    Vdinamico<Cliente> v;
+//    double mayorLon, mayorLat, menorLon, menorLat;
 //    //Instanciar el vector con todos los objetos de tipo Cliente leídos desde el fichero en formato csv proporcionado
 //    cout << "Comienzo de lectura de un fichero " << endl;
 //    leeClientes("clientes_v2.csv", vector);
@@ -151,30 +169,42 @@ int main(int argc, char** argv) {
 //    //Aqui mostramos el tiempo que tarda en calcular la distancia para hacernos una idea de la eficiencia de dicha eedd
 //    cout << "Tiempo de cálculo: " << time << " segundos\n";
 //
-    ListaDEnlazada<int> e1,e2,e3;
-    for(int i=0; i<10; i++){
-        e1.insertarFinal(i);
-    }
-    for(int i=0; i<20; i++){
-        e2.insertarFinal(i);
-    }
-    //ListaDEnlazada<int> e2(e1);
-    e3.UnirListas(e1,e2);
+    vectordinamico<Cliente> v; 
+     double mayorLon, mayorLat, menorLon, menorLat;
+     setlocale(LC_ALL,"es_ES.UTF8"); 
     
-    //cout<<"La lista antigua tiene: "<<e1.getNumeroelementos()<<" elementos"<<endl;
-    
-    //ListaDEnlazada<int> e2(e1);
+     try{   
+       cout << "Comienzo de lectura de un fichero " << endl;    
+       v=leeClientes ("clientes_v2.csv");
+       MaxMinLatLon(v, mayorLon, mayorLat, menorLon, menorLat);
+       //mostramos vector ordenado              
+       for (long int i=0; i<v.tam(); ++i)
+           std::cout<<  i << ": " << v[i].GetNOMBRE() << ";" << v[i].GetDNI() <<std::endl; 
 
-    cout<<"La lista 1 tiene: "<<e1.getNumeroelementos()<<" elementos"<<endl;
-    cout<<"La lista 2 tiene: "<<e2.getNumeroelementos()<<" elementos"<<endl;
-    cout<<"La lista unida tiene: "<<e3.getNumeroelementos()<<" elementos"<<endl;
-    cout<<"DATO primero: "<<e3.iteradorInicio().getNodo()->getDato()<<" :de la lista unida"<<endl;
-    cout<<"DATO final: "<<e3.iteradorFinal().getNodo()->getDato()<<" :de la lista unida"<<endl;
-    Iterador<int> it=e3.iteradorInicio();
-    cout<<"//////////DATOS DE LA LISTAS UNIDAS//////////"<<endl;
-    for(int i=0; i<e3.getNumeroelementos(); i++){
-               cout<<"DATO "<<i<<" : "<<it.getDato()<<endl;
-               it.siguiente();
-    }
+       std::cout << " Total de clientes ordenados: " << v.tam() << std::endl;
+        
+       cout << "Mayor longitud: " << mayorLon << std::endl;
+       cout << "Menor longitud: " << menorLon << std::endl;
+       cout << "Mayor latitud: " << mayorLat << std::endl;
+       cout << "Menor latitud: " << menorLat << std::endl;
+       
+       //Creamos itinerarios aleatorios a cada Cliente
+       unsigned long int IdUltimo=0;
+       for (long int i=0; i<v.tam(); ++i){
+           unsigned num=rand()%10+1;
+           v[i].crearItinerarios(num,IdUltimo,UTM(menorLat,menorLon),UTM(mayorLat,mayorLon));
+           IdUltimo+=num;
+           cout << "Cliente " << i << " creado con " << num << " Itinerarios" << endl;
+       }
+       
+     //Tratamiento de errores
+     }catch (ErrorFechaIncorrecta &e){
+            std::cerr << "Fecha Incorrecta: " << std::endl;
+     }catch (std::runtime_error &e){ //std::ifstream::failure &e){
+            std::cerr << "Excepcion en fichero: " <<  std::endl;
+     }catch (std::bad_alloc &e){
+            std::cerr << "No hay memoria suficiente para el objeto dinamico" << std::endl;     
+     }
+       
     return 0;
 }

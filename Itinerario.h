@@ -16,24 +16,12 @@
 
 #include "fecha.h"
 #include <cstdlib>
-
-
-
-struct UTM {
-    double latitud;
-    double longitud;
-
-    UTM(double _lat, double _long) : latitud(_lat), longitud(_long) {
-    }
-
-    UTM() : latitud(0), longitud(0) {
-    }
-};
+#include "UTM.h"
 
 
 class Itinerario {
 public:
-    Itinerario();
+    Itinerario(int _id, UTM &_inicio, UTM &_fin, Fecha &_fecha, int _minutos);
     Itinerario(const Itinerario& orig);
     virtual ~Itinerario();
     Fecha GetFecha() const {
