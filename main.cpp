@@ -106,14 +106,14 @@ void leeClientes(string fileNameClientes, vectordinamico<Cliente> &v) {
 
 void MaxMinLatLon(vectordinamico<Cliente> v, double &maxLon, double &maxLat, double &minLon, double &minLat){
        maxLon=-9999999, maxLat=-9999999, minLon=9999999, minLat=9999999;
-       for (int i=0; i<v.tama(); i++){
-           double x=v[i].GetPosicion().GetLongitud();
+       for (int i=0; i<v.tam(); i++){
+           double x=v[i].GetUTM().GetLongitud();
            if (x>maxLon)
                maxLon=x;
            else
                if (x<minLon)
                    minLon=x;
-           x=v[i].GetPosicion().GetLatitud();
+           x=v[i].GetUTM().GetLatitud();
            if (x>maxLat)
                maxLat=x;
            else
@@ -121,7 +121,7 @@ void MaxMinLatLon(vectordinamico<Cliente> v, double &maxLon, double &maxLat, dou
                    minLat=x;
 
        }
-
+}
 int main(int argc, char** argv) {
 //    Vdinamico<Cliente> v;
 //    double mayorLon, mayorLat, menorLon, menorLat;
@@ -175,7 +175,7 @@ int main(int argc, char** argv) {
     
      try{   
        cout << "Comienzo de lectura de un fichero " << endl;    
-       v=leeClientes ("clientes_v2.csv");
+       leeClientes ("clientes_v2.csv",v);
        MaxMinLatLon(v, mayorLon, mayorLat, menorLon, menorLat);
        //mostramos vector ordenado              
        for (long int i=0; i<v.tam(); ++i)
