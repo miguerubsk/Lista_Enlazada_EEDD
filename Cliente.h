@@ -14,18 +14,10 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
+#include "UTM.h"
+
 using namespace std;
 
-struct UTM {
-    double latitud;
-    double longitud;
-
-    UTM(double _lat, double _long) : latitud(_lat), longitud(_long) {
-    }
-
-    UTM() : latitud(0), longitud(0) {
-    }
-};
 
 class Cliente {
 public:
@@ -98,6 +90,21 @@ public:
 
     double distancia(const Cliente &cli) {
         return sqrt(pow(cli.posicion.latitud - this->posicion.latitud, 2) + pow(cli.posicion.longitud - this->posicion.longitud, 2));
+    }
+    
+    void crearItinerarios(int num, int IdUltimo, const UTM &min, const UTM &max){
+        Set_random(rand());
+        for (int i=0; i<num; i++){
+            Fecha f(rand()%28+1,rand()%12+1,rand()%10+2019);
+            UTM inicio( Randfloat(min.GetLatitud(),max.GetLatitud()),
+                        Randfloat(min.GetLongitud(),max.GetLongitud()));
+            UTM fin( Randfloat(min.GetLatitud(),max.GetLatitud()),
+                        Randfloat(min.GetLongitud(),max.GetLongitud()));
+         //   UTM fin( (rand()*(max.GetLatitud()-min.GetLatitud()))+min.GetLatitud(),
+         //            (rand()*(max.GetLongitud()-min.GetLongitud()))+min.GetLongitud());
+            int minutos = rand()%100;
+            itinerarios.insertarFinal(Itinerario(++IdUltimo,inicio,fin,f,minutos));
+        }
     }
 
 private:
