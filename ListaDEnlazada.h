@@ -253,9 +253,6 @@ int ListaDEnlazada<T>::getNumeroelementos() const {
 
 template <class T>
 void ListaDEnlazada<T>::insertarInicio(T& mdato) {
-    //numeroelementos++;
-
-
     Nodo<T> *nodo;
     nodo = new Nodo<T>(mdato, 0, cabecera);
     //si no hay ningun elememto, la lista esta vacia
@@ -389,9 +386,6 @@ ListaDEnlazada<T>::~ListaDEnlazada() {
         delete it;
     }
     delete cabecera;
-    //    cabecera=0;
-    //    cola=0;
-    //    numeroelementos=0;
 }
 
 template <class T>
@@ -411,7 +405,6 @@ ListaDEnlazada<T>& ListaDEnlazada<T>::Concatena(ListaDEnlazada<T> &lista) {
 template <class T>
 ListaDEnlazada<T>& ListaDEnlazada<T>::UnirListas(ListaDEnlazada<T> &L1, ListaDEnlazada<T> &L2) {
     if (!L1.iteradorInicio().haySiguiente() || !L2.iteradorInicio().haySiguiente()) throw std::string("Lista vacia");
-    //ListaDEnlazada<T> lista;
     Iterador<T> auxiliar = L1.iteradorInicio();
     Iterador<T> auxiliar1 = L2.iteradorInicio();
     for (int i = 0; i < L1.getNumeroelementos(); i++) {
@@ -425,8 +418,6 @@ ListaDEnlazada<T>& ListaDEnlazada<T>::UnirListas(ListaDEnlazada<T> &L1, ListaDEn
 
     }
     return *this;
-    //return lista;
-    /*retorna lista1*/
 }
 
 
