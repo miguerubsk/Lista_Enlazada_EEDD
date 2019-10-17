@@ -196,7 +196,7 @@ int main(int argc, char** argv) {
             unsigned num = rand() % 10 + 1;
             v[i].crearItinerarios(num, IdUltimo, UTM(menorLat, menorLon), UTM(mayorLat, mayorLon));
             IdUltimo += num;
-            cout << "Cliente " << i << " creado con " << num << " Itinerarios" << endl;
+            cout << "Cliente " << i << " ("<<v[i].GetNOMBRE()<<") "<<" creado con " << num << " Itinerarios" << endl;
         }
         Iterador<Itinerario> it=v[2].Getitinerarios().iteradorInicio();
         cout<<"Id: "<<it.getDato().GetId()<<endl;
