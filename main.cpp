@@ -216,7 +216,7 @@ int main(int argc, char** argv) {
         e1.insertarInicio(i);
     }
     Iterador<int> it = e1.iteradorInicio();
-    for (int i = 0; i < e1.getNumeroelementos() - 1; i++) {
+    for (int i = 0; i < e1.getNumeroelementos(); i++) {
         cout << "Dato nº " << i + 1 << " : " << it.getDato() << endl;
         it.siguiente();
     }
@@ -235,9 +235,12 @@ int main(int argc, char** argv) {
     }
     //lista3=lista1.Concatena(lista2);
     lista3.UnirListas(lista1, lista2);
+    cout << "Nº elementos de la lista 1: " << lista1.getNumeroelementos() << endl;
+    cout << "Nº elementos de la lista 2: " << lista2.getNumeroelementos() << endl;
+    cout << "Nº elementos de la lista 3 (unir 1 y 2): " << lista3.getNumeroelementos() << endl;
     Iterador<int> itlista = lista3.iteradorInicio();
-    for (int i = 0; i < lista3.getNumeroelementos() - 1; i++) {
-        cout << "Dato nº " << i << " : " << itlista.getDato() << endl;
+    for (int i = 0; i < lista3.getNumeroelementos(); i++) {
+        cout << "Dato nº " << i+1 << " : " << itlista.getDato() << endl;
         itlista.siguiente();
     }
     return 0;
